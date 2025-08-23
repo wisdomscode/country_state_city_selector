@@ -45,18 +45,6 @@ It works seamlessly across iOS, Android, Web, Windows, macOS, and Linux, adaptin
 
 ✅ Lightweight – no external dependencies beyond Flutter
 
----
-
-## 📸 Screenshots
-![Country Selector Labels](Screenshot1.jpg) 
-![Country Open](Screenshot2.jpg) 
-![Country Search ](Screenshot3.jpg) 
-![State Open](Screenshot4.jpg) 
-![State Search](Screenshot5.jpg) 
-![City Open](Screenshot6.jpg)
-![City search](Screenshot7.jpg) 
-![Country, State and City selected](Screenshot8.jpg) 
-![Country Selector Without Labels](Screenshot9.jpg)
 
 ---
 
@@ -187,3 +175,16 @@ It’s super flexible for all kind of apps such as for e-commerce apps, form bui
 ## Connect with
 Wisdom Ugochukwu
 wisdomscode@gmail.com
+
+---
+
+## 📸 Screenshots
+![Country Selector Labels](Screenshot1.jpg) 
+![Country Open](Screenshot2.jpg) 
+![Country Search ](Screenshot3.jpg) 
+![State Open](Screenshot4.jpg) 
+![State Search](Screenshot5.jpg) 
+![City Open](Screenshot6.jpg)
+![City search](Screenshot7.jpg) 
+![Country, State and City selected](Screenshot8.jpg) 
+![Country Selector Without Labels](Screenshot9.jpg)
