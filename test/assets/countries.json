@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Testland",
+        "emoji": "🏳️",
+        "states": [
+            {
+                "name": "Test State",
+                "cities": [
+                    {
+                        "name": "Test City"
+                    }
+                ]
+            }
+        ]
+    }
+]
