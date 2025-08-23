@@ -47,7 +47,7 @@ It works seamlessly across iOS, Android, Web, Windows, macOS, and Linux, adaptin
 
 ---
 
-## Screenshots
+## 📸 Screenshots
 ![Country Selector Labels](Screenshot1.jpg) 
 ![Country Open](Screenshot2.jpg) 
 ![Country Search ](Screenshot3.jpg) 
@@ -73,6 +73,8 @@ dependencies:
 ```
 
 ## 🚀 Usage
+
+```dart
 import 'package:flutter/material.dart';
 import 'package:country_state_city_selector/country_state_city_selector.dart';
 
@@ -135,57 +137,49 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+```
 
 🎨 Customization
-Property	Description	Default
-enableLabels	Show/hide labels above pickers	true
-borderColor	Border color of selection boxes	Colors.grey
-borderWidth	Border width of selection boxes	1.0
-fillColor	Background color of selection boxes	Colors.transparent
-labelColor	Label text color	Colors.black
-labelFontSize	Label font size	14
-labelFontWeight	Label font weight	FontWeight.normal
-countryHintText	Hint text for country	"Select Country"
-stateHintText	Hint text for state	"Select State/Province"
-cityHintText	Hint text for city	"Select City"
-selectedTextColor	Text color of selected item	Colors.black
-selectedTextFontSize	Selected text font size	16
-selectedTextFontWeight	Selected text font weight	FontWeight.normal
-pickerItemTextColor	List item text color in modal	Colors.black
-pickerItemFontSize	List item font size in modal	16
-pickerItemFontWeight	List item font weight	FontWeight.normal
-modalBackgroundColor	Modal background	Color(0xFFFFFFFF)
-modalTitleColor	Title color in modal	Colors.black
-modalTitleFontSize	Modal title size	18
-modalTitleFontWeight	Modal title weight	FontWeight.bold
-📱 Platform Adaptation
+- Property	Description	Default
+- enableLabels	Show/hide labels above pickers	true
+- borderColor	Border color of selection boxes	Colors.grey
+- borderWidth	Border width of selection boxes	1.0
+- fillColor	Background color of selection boxes	Colors.transparent
+- labelColor	Label text color	Colors.black
+- labelFontSize	Label font size	14
+- labelFontWeight	Label font weight	FontWeight.normal
+- countryHintText	Hint text for country	"Select Country"
+- stateHintText	Hint text for state	"Select State/Province"
+- cityHintText	Hint text for city	"Select City"
+- selectedTextColor	Text color of selected item	Colors.black
+- selectedTextFontSize	Selected text font size	16
+- selectedTextFontWeight	Selected text font weight	FontWeight.normal
+- pickerItemTextColor	List item text color in modal	Colors.black
+- pickerItemFontSize	List item font size in modal	16
+- pickerItemFontWeight	List item font weight	FontWeight.normal
+- modalBackgroundColor	Modal background	Color(0xFFFFFFFF)
+- modalTitleColor	Title color in modal	Colors.black
+- modalTitleFontSize	Modal title size	18
+- modalTitleFontWeight	Modal title weight	FontWeight.bold
 
-iOS / macOS → Cupertino modal bottom sheet + CupertinoSearchTextField
+### 📱 Platform Adaptation
 
-Android / Web / Windows / Linux → Material modal bottom sheet + TextField
+- iOS / macOS → Cupertino modal bottom sheet + CupertinoSearchTextField
+- Android / Web / Windows / Linux → Material modal bottom sheet + TextField
+- This ensures the widget looks native on every platform.
 
-This ensures the widget looks native on every platform.
+### 🛠 Callbacks
 
-🛠 Callbacks
+- onSelectionChanged(String country, String state, String city) → triggered whenever any level changes
+- onCountryChanged(String country) → triggered when a country is selected
+- onStateChanged(String state) → triggered when a state is selected
 
-onSelectionChanged(String country, String state, String city) → triggered whenever any level changes
-
-onCountryChanged(String country) → triggered when a country is selected
-
-onStateChanged(String state) → triggered when a state is selected
-
-onCityChanged(String city) → triggered when a city is selected
-
-📸 Screenshots (Suggested)
-
-Country picker modal (Android & iOS)
-
-State picker modal
-
-City picker modal
+- onCityChanged(String city) → triggered when a city is selected
 
 
-✅ Conclusion
+
+
+## ✅ Conclusion
 
 The CountryStateCitySelector widget is a plug-and-play, customizable, adaptive solution for selecting countries, states, and cities in your Flutter app.
 It’s super flexible for all kind of apps such as for e-commerce apps, form builders, government apps, and location-based services.
