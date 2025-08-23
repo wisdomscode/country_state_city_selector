@@ -67,13 +67,13 @@ class _HomePageState extends State<HomePage> {
                 });
               },
               onCountryChanged: (country) {
-                print("User picked country: $country");
+                // print("User picked country: $country");
               },
               onStateChanged: (state) {
-                print("User picked state: $state");
+                // print("User picked state: $state");
               },
               onCityChanged: (city) {
-                print("User picked city: $city");
+                // print("User picked city: $city");
               },
             ),
             const SizedBox(height: 20),

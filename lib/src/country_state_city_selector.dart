@@ -123,11 +123,8 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
     final String jsonString = await rootBundle.loadString(widget.assetPath);
 
     final List<dynamic> jsonList = jsonDecode(jsonString);
-    // final List<dynamic> jsonList = json.decode(jsonString);
 
     setState(() {
-      // countries = jsonList ;
-
       countries = jsonList.map((c) => c as Map<String, dynamic>).toList();
       isLoading = false;
     });
@@ -149,7 +146,7 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
-              color: Theme.of(context).dialogBackgroundColor,
+              color: widget.modalBackgroundColor,
               borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
             ),
             child: Column(

@@ -18,8 +18,5 @@ void main() {
 
     // Check that the widget exists in the widget tree
     expect(find.byType(CountryStateCitySelector), findsOneWidget);
-
-    // Optional: verify default hint text is shown
-    // expect(find.text('Select Country'), findsOneWidget);
   });
 }
