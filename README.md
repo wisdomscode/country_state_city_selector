@@ -54,7 +54,7 @@ Add the dependency to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  syncfusion_flutter_pdfviewer: ^30.2.6
+  country_state_city_selector: ^1.0.1
 ```
 
 ### Import
@@ -64,17 +64,13 @@ import 'package:country_state_city_selector/country_state_city_selector.dart';
 ```
 
 ## 📸 Screenshots
-<img src="Screenshot1.jpg" alt="Country Selector with Labels" width="300"/>
-<img src="Screenshot2.jpg" alt="Country Modal Open" width="300"/>
-<img src="Screenshot3.jpg" alt="Country Search" width="300"/>
+<img src="Screenshot1.jpg" alt="Country Selector with Labels" width="200"/>
+<img src="Screenshot2.jpg" alt="Country Modal Open" width="200"/>
+<img src="Screenshot3.jpg" alt="Country Search" width="200"/>
 
-<img src="Screenshot4.jpg" alt="State Modal Open" width="300"/>
-<img src="Screenshot5.jpg" alt="State Search" width="300"/>
-<img src="Screenshot6.jpg" alt="City Modal Open" width="300"/>
-
-<img src="Screenshot7.jpg" alt="City Search" width="300"/>
-<img src="Screenshot8.jpg" alt="Country, State and City selected" width="300"/>
-<img src="Screenshot9.jpg" alt="Country Selector Without Labels" width="300"/>
+<img src="Screenshot7.jpg" alt="City Search" width="200"/>
+<img src="Screenshot8.jpg" alt="Country, State and City selected" width="200"/>
+<img src="Screenshot9.jpg" alt="Country Selector Without Labels" width="200"/>
 
 
 ## 🚀 Usage

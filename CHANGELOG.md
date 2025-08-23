@@ -1,4 +1,4 @@
-## [1.0.1] - 2025-08-23
+## [1.0.2] - 2025-08-23
 ### Added
 - Initial release of `CountryStateCitySelector` widget.
 - Fully customizable country, state, and city picker.
@@ -12,3 +12,5 @@
 - Platform-adaptive modal: uses `CupertinoModalPopup` on iOS/macOS and `showModalBottomSheet` on Android/Web.
 - Fully compatible with Flutter 3+ and responsive to all screen sizes.
 
+
+[1.0.2] - 2025-08-23 - made a patch
