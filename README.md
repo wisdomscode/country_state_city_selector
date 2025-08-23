@@ -1,12 +1,12 @@
-# 🌍 CountryStateCitySelector – A Customizable Flutter Picker
+## 🌍 CountryStateCitySelector 
 
+### A Customizable Flutter Picker
 
 A **fully customizable, platform-adaptive Flutter widget** for selecting **Country, State/Province, and City**.  
 Supports **optional callbacks**, **searchable pickers**, and **cross-platform UI** (iOS, Android, Web, macOS).
 
 It works seamlessly across iOS, Android, Web, Windows, macOS, and Linux, adapting its design using Material and Cupertino widgets.
 
----
 
 ---
 
@@ -54,11 +54,28 @@ Add the dependency to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  country_state_city_selector:
-    git:
-      url: https://github.com/wisdomscode/country_state_city_selector.git
-      ref: main
+  syncfusion_flutter_pdfviewer: ^30.2.6
 ```
+
+### Import
+```dart
+import 'package:country_state_city_selector/country_state_city_selector.dart';
+
+```
+
+## 📸 Screenshots
+<img src="Screenshot1.jpg" alt="Country Selector with Labels" width="300"/>
+<img src="Screenshot2.jpg" alt="Country Modal Open" width="300"/>
+<img src="Screenshot3.jpg" alt="Country Search" width="300"/>
+
+<img src="Screenshot4.jpg" alt="State Modal Open" width="300"/>
+<img src="Screenshot5.jpg" alt="State Search" width="300"/>
+<img src="Screenshot6.jpg" alt="City Modal Open" width="300"/>
+
+<img src="Screenshot7.jpg" alt="City Search" width="300"/>
+<img src="Screenshot8.jpg" alt="Country, State and City selected" width="300"/>
+<img src="Screenshot9.jpg" alt="Country Selector Without Labels" width="300"/>
+
 
 ## 🚀 Usage
 
@@ -176,15 +193,6 @@ It’s super flexible for all kind of apps such as for e-commerce apps, form bui
 Wisdom Ugochukwu
 wisdomscode@gmail.com
 
----
 
-## 📸 Screenshots
-![Country Selector Labels](Screenshot1.jpg) 
-![Country Open](Screenshot2.jpg) 
-![Country Search ](Screenshot3.jpg) 
-![State Open](Screenshot4.jpg) 
-![State Search](Screenshot5.jpg) 
-![City Open](Screenshot6.jpg)
-![City search](Screenshot7.jpg) 
-![Country, State and City selected](Screenshot8.jpg) 
-![Country Selector Without Labels](Screenshot9.jpg)
+
+
