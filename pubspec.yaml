@@ -27,3 +27,5 @@ flutter:
   assets:
     - assets/countries.json
     - test/assets/countries.json
+
+  uses-material-design: true
