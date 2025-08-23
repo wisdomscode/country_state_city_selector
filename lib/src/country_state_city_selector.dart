@@ -135,7 +135,7 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
     required String title,
     required List<T> items,
     required void Function(T value) onSelected,
-    String? hintText, // 👈 optional hint text
+    String? hintText,
   }) {
     List<T> filteredItems = items;
 
@@ -146,7 +146,7 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
-              color: widget.modalBackgroundColor,
+              color: widget.modalBackgroundColor, // ✅ uses customizable modal background
               borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
             ),
             child: Column(
@@ -162,19 +162,14 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
                 // Title
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: (Platform.isIOS || Platform.isMacOS) && !kIsWeb
-                      ? Text(
-                          title,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: CupertinoColors.label,
-                          ),
-                        )
-                      : Text(
-                          title,
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-                        ),
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: widget.modalTitleFontSize,
+                      fontWeight: widget.modalTitleFontWeight,
+                      color: widget.modalTitleColor,
+                    ),
+                  ),
                 ),
 
                 // Search box
@@ -182,7 +177,7 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: (Platform.isIOS || Platform.isMacOS) && !kIsWeb
                       ? CupertinoSearchTextField(
-                          placeholder: hintText ?? "Search $title",
+                          placeholder: hintText ?? "Search and $title",
                           onChanged: (value) {
                             setState(() {
                               filteredItems = items.where((item) {
@@ -234,14 +229,29 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
                         displayText = item.toString();
                       }
 
+                      final bool isSelected;
+                      if (item is Map<String, dynamic>) {
+                        isSelected = selectedCountry != null && selectedCountry!["name"] == displayText;
+                      } else {
+                        // For state or city items
+                        isSelected =
+                            (selectedState != null && selectedState == displayText) ||
+                            (selectedCity != null && selectedCity == displayText);
+                      }
+
                       final row = Row(
                         children: [
-                          if (emoji != null) Text(emoji, style: const TextStyle(fontSize: 22)),
+                          if (emoji != null) Text(emoji, style: TextStyle(fontSize: widget.pickerItemFontSize)),
                           if (emoji != null) const SizedBox(width: 10),
                           Expanded(
-                            child: (Platform.isIOS || Platform.isMacOS) && !kIsWeb
-                                ? Text(displayText, style: const TextStyle(fontSize: 16, color: CupertinoColors.label))
-                                : Text(displayText, style: Theme.of(context).textTheme.bodyMedium),
+                            child: Text(
+                              displayText,
+                              style: TextStyle(
+                                fontSize: widget.pickerItemFontSize,
+                                fontWeight: widget.pickerItemFontWeight,
+                                color: isSelected ? widget.selectedTextColor : widget.pickerItemTextColor,
+                              ),
+                            ),
                           ),
                         ],
                       );
@@ -272,7 +282,6 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
       },
     );
 
-    // Show modal depending on platform
     if ((Platform.isIOS || Platform.isMacOS) && !kIsWeb) {
       showCupertinoModalPopup(context: context, builder: (_) => content);
     } else {
