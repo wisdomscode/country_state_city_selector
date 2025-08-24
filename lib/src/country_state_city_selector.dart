@@ -12,7 +12,7 @@ class CountryStateCitySelector extends StatefulWidget {
   const CountryStateCitySelector({
     super.key,
 
-    this.onSelectionChanged,
+    required this.onSelectionChanged,
 
     // Optional callbacks
     this.onCountryChanged,
@@ -53,11 +53,11 @@ class CountryStateCitySelector extends StatefulWidget {
     this.modalTitleFontWeight = FontWeight.bold,
 
     // Default for app
-    this.assetPath = 'assets/countries.json',
+    this.assetPath = 'packages/country_state_city_selector/assets/countries.json',
   });
 
   // Optional selection callback
-  final void Function(String country, String state, String city)? onSelectionChanged;
+  final void Function(String country, String state, String city) onSelectionChanged;
 
   // Optional individual callbacks
   final void Function(String country)? onCountryChanged;

@@ -6,9 +6,10 @@ void main() {
   testWidgets('CountryStateCitySelector renders correctly', (WidgetTester tester) async {
     // Build the widget inside a MaterialApp (needed for context, theme, etc.)
     await tester.pumpWidget(
-      const MaterialApp(
+      MaterialApp(
         home: Scaffold(
           body: CountryStateCitySelector(
+            onSelectionChanged: (country, state, city) {},
             assetPath: 'test/assets/countries.json', // 👈 Use test JSON
             countryHintText: 'Choose a nation',
           ),
