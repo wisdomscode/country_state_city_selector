@@ -1,6 +1,6 @@
 name: country_state_city_selector
 description: A customizable Flutter widget for selecting country → state → city with adaptive Material & Cupertino UI.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/wisdomscode/country_state_city_selector
 repository: https://github.com/wisdomscode/country_state_city_selector
 issue_tracker: https://github.com/wisdomscode/country_state_city_selector/issues
