@@ -145,34 +145,25 @@ class _MyHomePageState extends State<MyHomePage> {
 |--------------------------|--------------------------------------  |------------|
 | `borderColor`            | Border color of selection boxes        | `Colors.amber` |
 | `borderWidth`            | Border width of selection boxes        | `2` |
-
 | `countryHintText`        | Hint text for country                  | `"My Country"` |
 | `stateHintText`          | Hint text for state                    | `"My State"` |
 | `cityHintText`           | Hint text for city                     | `"My Local Government"` |
-
 | `defaultCountry`         | Fallback country if none selected      | `"Ghana"` |
-
 | `initialCountry`         | Pre-selected country                   | `"Nigeria"` |
 | `initialState`           | Pre-selected state                     | `"Lagos"` |
 | `initialCity`            | Pre-selected city                      | `"Ikeja"` |
-
 | `enableLabels`           | Show/hide labels above pickers         | `false` |
-
 | `fillColor`              | Background color of selection boxes    | `Color(0xFFFFE8F0)` |
-
 | `labelColor`             | Label text color                       | `Colors.red` |
 | `labelFontSize`          | Label font size                        | `18` |
 | `labelFontWeight`        | Label font weight                      | `FontWeight.bold` |
-
 | `modalBackgroundColor`   | Modal background                       | `Color(0xFF606060)` |
 | `modalTitleColor`        | Title color in modal                   | `Color(0xFFEAEAEA)` |
 | `modalTitleFontSize`     | Modal title size                       | `24` |
 | `modalTitleFontWeight`   | Modal title weight                     | `FontWeight.bold` |
-
 | `pickerItemFontSize`     | List item font size in modal           | `18` |
 | `pickerItemFontWeight`   | List item font weight in modal         | `FontWeight.bold` |
 | `pickerItemTextColor`    | List item text color in modal          | `Colors.blue` |
-
 | `selectedTextColor`      | Text color of selected item            | `Colors.green` |
 | `selectedTextFontSize`   | Selected text font size                | `18` |
 | `selectedTextFontWeight` | Selected text font weight              | `FontWeight.bold` |
