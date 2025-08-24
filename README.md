@@ -76,67 +76,85 @@ import 'package:country_state_city_selector/country_state_city_selector.dart';
 ## 🚀 Usage
 
 ```dart
+import 'package:country_state_city/country_state_city.dart';
 import 'package:flutter/material.dart';
-import 'package:country_state_city_selector/country_state_city_selector.dart';
 
-class MyHomePage extends StatefulWidget {
+class TestingCountry extends StatefulWidget {
+  const TestingCountry({super.key});
+
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<TestingCountry> createState() => _TestingCountryState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _TestingCountryState extends State<TestingCountry> {
   String _country = '';
   String _state = '';
   String _city = '';
 
+  String _submitted = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Country State City Selector")),
+      appBar: AppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: CountryStateCitySelector(
-          enableLabels: true,
-          borderColor: Colors.amber,
-          borderWidth: 2,
-          fillColor: const Color(0xFFFFE8F0),
-          labelColor: Colors.red,
-          labelFontSize: 18,
-          labelFontWeight: FontWeight.bold,
-          selectedTextColor: Colors.green,
-          selectedTextFontSize: 18,
-          selectedTextFontWeight: FontWeight.bold,
-          pickerItemTextColor: Colors.blue,
-          pickerItemFontSize: 18,
-          pickerItemFontWeight: FontWeight.bold,
-          modalBackgroundColor: const Color(0xFFEEEEEE),
-          modalTitleFontSize: 24,
-          modalTitleColor: Colors.orange,
-          modalTitleFontWeight: FontWeight.bold,
-          countryHintText: 'My Country',
-          stateHintText: 'My State',
-          cityHintText: 'My Local Government',
-          onSelectionChanged: (String country, String state, String city) {
-            setState(() {
-              _country = country;
-              _state = state;
-              _city = city;
-            });
-          },
-          onCountryChanged: (country) {
-            print("User picked country: $country");
-          },
-          onStateChanged: (state) {
-            print("User picked state: $state");
-          },
-          onCityChanged: (city) {
-            print("User picked city: $city");
-          },
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text("Selected Location"),
+            Text(_submitted),
+            Text("${_country} ${_state} ${_city}"),
+            SizedBox(height: 20),
+
+            CountryStateCitySelector(
+              enableLabels: false,
+              initialCountry: 'Nigeria',
+              initialState: "Lagos",
+              initialCity: "Ikeja",
+              defaultCountry: 'Ghana',
+              borderColor: Colors.amber,
+              borderWidth: 2,
+              fillColor: const Color(0xFFFFE8F0),
+              labelColor: Colors.red,
+              labelFontSize: 18,
+              labelFontWeight: FontWeight.bold,
+              selectedTextColor: Colors.green,
+              selectedTextFontSize: 18,
+              selectedTextFontWeight: FontWeight.bold,
+              pickerItemTextColor: Colors.blue,
+              pickerItemFontSize: 18,
+              pickerItemFontWeight: FontWeight.bold,
+              modalBackgroundColor: const Color.fromARGB(255, 96, 96, 96),
+              modalTitleFontSize: 24,
+              modalTitleColor: const Color(0xFFEAEAEA),
+              modalTitleFontWeight: FontWeight.bold,
+              countryHintText: 'My Country',
+              stateHintText: 'My State',
+              cityHintText: 'My Local Government',
+              onSelectionChanged: (String country, String state, String city) {
+                setState(() {
+                  _country = country;
+                  _state = state;
+                  _city = city;
+                });
+              },
+              onCountryChanged: (country) {
+                print("User picked country: $country");
+              },
+              onStateChanged: (state) {
+                print("User picked state: $state");
+              },
+              onCityChanged: (city) {
+                print("User picked city: $city");
+              },
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
 
 ```
 ## 🎨 Customization (Alphabetical, Example with Overrides)
