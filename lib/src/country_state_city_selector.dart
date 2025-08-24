@@ -329,11 +329,7 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
                 });
 
                 widget.onCountryChanged?.call(selectedCountry?["name"] ?? '');
-                widget.onSelectionChanged?.call(
-                  selectedCountry?["name"] ?? '',
-                  selectedState ?? '',
-                  selectedCity ?? '',
-                );
+                widget.onSelectionChanged.call(selectedCountry?["name"] ?? '', selectedState ?? '', selectedCity ?? '');
               },
             );
           },
@@ -368,7 +364,7 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
                   });
 
                   widget.onStateChanged?.call(selectedState ?? '');
-                  widget.onSelectionChanged?.call(
+                  widget.onSelectionChanged.call(
                     selectedCountry?["name"] ?? '',
                     selectedState ?? '',
                     selectedCity ?? '',
@@ -409,7 +405,7 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
                   });
 
                   widget.onCityChanged?.call(selectedCity ?? '');
-                  widget.onSelectionChanged?.call(
+                  widget.onSelectionChanged.call(
                     selectedCountry?["name"] ?? '',
                     selectedState ?? '',
                     selectedCity ?? '',
