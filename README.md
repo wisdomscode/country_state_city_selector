@@ -139,29 +139,44 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 ```
+## 🎨 Customization (Alphabetical, Example with Overrides)
 
-🎨 Customization
-- Property	Description	Default
-- enableLabels	Show/hide labels above pickers	true
-- borderColor	Border color of selection boxes	Colors.grey
-- borderWidth	Border width of selection boxes	1.0
-- fillColor	Background color of selection boxes	Colors.transparent
-- labelColor	Label text color	Colors.black
-- labelFontSize	Label font size	14
-- labelFontWeight	Label font weight	FontWeight.normal
-- countryHintText	Hint text for country	"Select Country"
-- stateHintText	Hint text for state	"Select State/Province"
-- cityHintText	Hint text for city	"Select City"
-- selectedTextColor	Text color of selected item	Colors.black
-- selectedTextFontSize	Selected text font size	16
-- selectedTextFontWeight	Selected text font weight	FontWeight.normal
-- pickerItemTextColor	List item text color in modal	Colors.black
-- pickerItemFontSize	List item font size in modal	16
-- pickerItemFontWeight	List item font weight	FontWeight.normal
-- modalBackgroundColor	Modal background	Color(0xFFFFFFFF)
-- modalTitleColor	Title color in modal	Colors.black
-- modalTitleFontSize	Modal title size	18
-- modalTitleFontWeight	Modal title weight	FontWeight.bold
+| **Property**             | **Description**                        | **Example Value** |
+|--------------------------|--------------------------------------  |------------|
+| `borderColor`            | Border color of selection boxes        | `Colors.amber` |
+| `borderWidth`            | Border width of selection boxes        | `2` |
+
+| `countryHintText`        | Hint text for country                  | `"My Country"` |
+| `stateHintText`          | Hint text for state                    | `"My State"` |
+| `cityHintText`           | Hint text for city                     | `"My Local Government"` |
+
+| `defaultCountry`         | Fallback country if none selected      | `"Ghana"` |
+
+| `initialCountry`         | Pre-selected country                   | `"Nigeria"` |
+| `initialState`           | Pre-selected state                     | `"Lagos"` |
+| `initialCity`            | Pre-selected city                      | `"Ikeja"` |
+
+| `enableLabels`           | Show/hide labels above pickers         | `false` |
+
+| `fillColor`              | Background color of selection boxes    | `Color(0xFFFFE8F0)` |
+
+| `labelColor`             | Label text color                       | `Colors.red` |
+| `labelFontSize`          | Label font size                        | `18` |
+| `labelFontWeight`        | Label font weight                      | `FontWeight.bold` |
+
+| `modalBackgroundColor`   | Modal background                       | `Color(0xFF606060)` |
+| `modalTitleColor`        | Title color in modal                   | `Color(0xFFEAEAEA)` |
+| `modalTitleFontSize`     | Modal title size                       | `24` |
+| `modalTitleFontWeight`   | Modal title weight                     | `FontWeight.bold` |
+
+| `pickerItemFontSize`     | List item font size in modal           | `18` |
+| `pickerItemFontWeight`   | List item font weight in modal         | `FontWeight.bold` |
+| `pickerItemTextColor`    | List item text color in modal          | `Colors.blue` |
+
+| `selectedTextColor`      | Text color of selected item            | `Colors.green` |
+| `selectedTextFontSize`   | Selected text font size                | `18` |
+| `selectedTextFontWeight` | Selected text font weight              | `FontWeight.bold` |
+
 
 ### 📱 Platform Adaptation
 
