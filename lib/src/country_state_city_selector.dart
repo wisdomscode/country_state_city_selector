@@ -52,8 +52,13 @@ class CountryStateCitySelector extends StatefulWidget {
     this.modalTitleFontSize = 18,
     this.modalTitleFontWeight = FontWeight.bold,
 
-    // Default for app
-    this.assetPath = 'packages/country_state_city_selector/assets/countries.json',
+    // For Initialization
+    this.initialCountry,
+    this.initialState,
+    this.initialCity,
+
+    // default country
+    this.defaultCountry,
   });
 
   // Optional selection callback
@@ -99,8 +104,13 @@ class CountryStateCitySelector extends StatefulWidget {
   final double modalTitleFontSize;
   final FontWeight modalTitleFontWeight;
 
-  // Optional Adding assets
-  final String assetPath;
+  // For Initialization
+  final String? initialCountry;
+  final String? initialState;
+  final String? initialCity;
+
+  // Default Dountry
+  final String? defaultCountry;
 
   @override
   State<CountryStateCitySelector> createState() => _CountryStateCitySelectorState();
@@ -120,13 +130,69 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
   }
 
   Future<void> loadCountryData() async {
-    final String jsonString = await rootBundle.loadString(widget.assetPath);
+    final String jsonString = await rootBundle.loadString('packages/country_state_city_selector/assets/countries.json');
 
     final List<dynamic> jsonList = jsonDecode(jsonString);
 
     setState(() {
       countries = jsonList.map((c) => c as Map<String, dynamic>).toList();
       isLoading = false;
+
+      //  Step 1: Prefill with initialCountry (highest priority)
+      if (widget.initialCountry != null) {
+        selectedCountry =
+            countries
+                .firstWhere(
+                  (c) => (c["name"] as String).toLowerCase() == widget.initialCountry!.toLowerCase(),
+                  orElse: () => {},
+                )
+                .isNotEmpty
+            ? countries.firstWhere((c) => (c["name"] as String).toLowerCase() == widget.initialCountry!.toLowerCase())
+            : null;
+      }
+
+      //  Step 2: If no initialCountry, use defaultCountry
+      if (selectedCountry == null && widget.defaultCountry != null) {
+        selectedCountry =
+            countries
+                .firstWhere(
+                  (c) => (c["name"] as String).toLowerCase() == widget.defaultCountry!.toLowerCase(),
+                  orElse: () => {},
+                )
+                .isNotEmpty
+            ? countries.firstWhere((c) => (c["name"] as String).toLowerCase() == widget.defaultCountry!.toLowerCase())
+            : null;
+      }
+
+      //  Step 3: Prefill state (only if initialState is provided + valid)
+      if (selectedCountry != null && widget.initialState != null) {
+        final states = selectedCountry!["states"] as List<dynamic>;
+        final stateExists = states.any(
+          (s) => (s["name"] as String).toLowerCase() == widget.initialState!.toLowerCase(),
+        );
+        if (stateExists) {
+          selectedState = widget.initialState;
+        }
+      }
+
+      //  Step 4: Prefill city (only if initialCity is provided + valid)
+      if (selectedCountry != null && selectedState != null && widget.initialCity != null) {
+        final states = selectedCountry!["states"] as List<dynamic>;
+        final stateObj = states.firstWhere((s) => s["name"].toLowerCase() == selectedState!.toLowerCase());
+        final cities = stateObj["cities"] as List<dynamic>;
+
+        final cityExists = cities.any((c) => (c["name"] as String).toLowerCase() == widget.initialCity!.toLowerCase());
+        if (cityExists) {
+          selectedCity = widget.initialCity;
+        }
+      }
+
+      //  Step 5: Trigger callbacks (for prefilled/default values)
+      widget.onSelectionChanged(selectedCountry?["name"] ?? '', selectedState ?? '', selectedCity ?? '');
+
+      if (selectedCountry != null) widget.onCountryChanged?.call(selectedCountry!["name"]);
+      if (selectedState != null) widget.onStateChanged?.call(selectedState!);
+      if (selectedCity != null) widget.onCityChanged?.call(selectedCity!);
     });
   }
 
@@ -146,7 +212,7 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
-              color: widget.modalBackgroundColor, // ✅ uses customizable modal background
+              color: widget.modalBackgroundColor, // uses customizable modal background
               borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
             ),
             child: Column(

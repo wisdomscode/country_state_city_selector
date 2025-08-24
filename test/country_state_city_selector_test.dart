@@ -10,7 +10,6 @@ void main() {
         home: Scaffold(
           body: CountryStateCitySelector(
             onSelectionChanged: (country, state, city) {},
-            assetPath: 'test/assets/countries.json', // 👈 Use test JSON
             countryHintText: 'Choose a nation',
           ),
         ),
