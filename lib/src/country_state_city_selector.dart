@@ -62,10 +62,16 @@ class CountryStateCitySelector extends StatefulWidget {
 
     // vertical Padding
     this.verticalPadding = 12,
+
+    // TextField Hint Text
+    this.countryTextFieldHintText,
+    this.stateTextFieldHintText,
+    this.cityTextFieldHintText,
   });
 
   // Optional selection callback
-  final void Function(String country, String state, String city) onSelectionChanged;
+  final void Function(String country, String state, String city)
+  onSelectionChanged;
 
   // Optional individual callbacks
   final void Function(String country)? onCountryChanged;
@@ -116,8 +122,15 @@ class CountryStateCitySelector extends StatefulWidget {
   final String? defaultCountry;
 
   final double verticalPadding;
+
+  // TextField hint text
+  final String? countryTextFieldHintText;
+  final String? stateTextFieldHintText;
+  final String? cityTextFieldHintText;
+
   @override
-  State<CountryStateCitySelector> createState() => _CountryStateCitySelectorState();
+  State<CountryStateCitySelector> createState() =>
+      _CountryStateCitySelectorState();
 }
 
 class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
@@ -147,32 +160,38 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
       //  Step 1: Prefill with initialCountry (highest priority)
       if (widget.initialCountry != null) {
         selectedCountry =
-            countries
-                .firstWhere(
-                  (c) =>
-                      (c["name"] as String).toLowerCase() == widget.initialCountry!.toLowerCase(),
-                  orElse: () => {},
-                )
-                .isNotEmpty
+        countries
+            .firstWhere(
+              (c) =>
+          (c["name"] as String).toLowerCase() ==
+              widget.initialCountry!.toLowerCase(),
+          orElse: () => {},
+        )
+            .isNotEmpty
             ? countries.firstWhere(
-                (c) => (c["name"] as String).toLowerCase() == widget.initialCountry!.toLowerCase(),
-              )
+              (c) =>
+          (c["name"] as String).toLowerCase() ==
+              widget.initialCountry!.toLowerCase(),
+        )
             : null;
       }
 
       //  Step 2: If no initialCountry, use defaultCountry
       if (selectedCountry == null && widget.defaultCountry != null) {
         selectedCountry =
-            countries
-                .firstWhere(
-                  (c) =>
-                      (c["name"] as String).toLowerCase() == widget.defaultCountry!.toLowerCase(),
-                  orElse: () => {},
-                )
-                .isNotEmpty
+        countries
+            .firstWhere(
+              (c) =>
+          (c["name"] as String).toLowerCase() ==
+              widget.defaultCountry!.toLowerCase(),
+          orElse: () => {},
+        )
+            .isNotEmpty
             ? countries.firstWhere(
-                (c) => (c["name"] as String).toLowerCase() == widget.defaultCountry!.toLowerCase(),
-              )
+              (c) =>
+          (c["name"] as String).toLowerCase() ==
+              widget.defaultCountry!.toLowerCase(),
+        )
             : null;
       }
 
@@ -180,7 +199,9 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
       if (selectedCountry != null && widget.initialState != null) {
         final states = selectedCountry!["states"] as List<dynamic>;
         final stateExists = states.any(
-          (s) => (s["name"] as String).toLowerCase() == widget.initialState!.toLowerCase(),
+              (s) =>
+          (s["name"] as String).toLowerCase() ==
+              widget.initialState!.toLowerCase(),
         );
         if (stateExists) {
           selectedState = widget.initialState;
@@ -188,15 +209,19 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
       }
 
       //  Step 4: Prefill city (only if initialCity is provided + valid)
-      if (selectedCountry != null && selectedState != null && widget.initialCity != null) {
+      if (selectedCountry != null &&
+          selectedState != null &&
+          widget.initialCity != null) {
         final states = selectedCountry!["states"] as List<dynamic>;
         final stateObj = states.firstWhere(
-          (s) => s["name"].toLowerCase() == selectedState!.toLowerCase(),
+              (s) => s["name"].toLowerCase() == selectedState!.toLowerCase(),
         );
         final cities = stateObj["cities"] as List<dynamic>;
 
         final cityExists = cities.any(
-          (c) => (c["name"] as String).toLowerCase() == widget.initialCity!.toLowerCase(),
+              (c) =>
+          (c["name"] as String).toLowerCase() ==
+              widget.initialCity!.toLowerCase(),
         );
         if (cityExists) {
           selectedCity = widget.initialCity;
@@ -210,7 +235,8 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
         selectedCity ?? '',
       );
 
-      if (selectedCountry != null) widget.onCountryChanged?.call(selectedCountry!["name"]);
+      if (selectedCountry != null)
+        widget.onCountryChanged?.call(selectedCountry!["name"]);
       if (selectedState != null) widget.onStateChanged?.call(selectedState!);
       if (selectedCity != null) widget.onCityChanged?.call(selectedCity!);
     });
@@ -227,148 +253,176 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
 
     final content = StatefulBuilder(
       builder: (context, setState) {
-        return FractionallySizedBox(
-          heightFactor: 0.7,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-              color: widget.modalBackgroundColor, // uses customizable modal background
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            ),
-            child: Column(
-              children: [
-                // Drag handle
-                Container(
-                  margin: const EdgeInsets.only(top: 8, bottom: 12),
-                  width: 50,
-                  height: 5,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[400],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+        return Material(
+          color: Colors.transparent,
+          child: FractionallySizedBox(
+            heightFactor: 0.7,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                color: widget.modalBackgroundColor,
+                // uses customizable modal background
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(16),
                 ),
-
-                // Title
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: widget.modalTitleFontSize,
-                      fontWeight: widget.modalTitleFontWeight,
-                      color: widget.modalTitleColor,
+              ),
+              child: Column(
+                children: [
+                  // Drag handle
+                  Container(
+                    margin: const EdgeInsets.only(top: 8, bottom: 12),
+                    width: 50,
+                    height: 5,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[400],
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                ),
 
-                // Search box
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: (Platform.isIOS || Platform.isMacOS) && !kIsWeb
-                      ? CupertinoSearchTextField(
-                          placeholder: hintText ?? "Search and $title",
-                          onChanged: (value) {
-                            setState(() {
-                              filteredItems = items.where((item) {
-                                if (item is Map<String, dynamic>) {
-                                  return item["name"].toLowerCase().contains(value.toLowerCase());
-                                } else if (item is String) {
-                                  return item.toLowerCase().contains(value.toLowerCase());
-                                }
-                                return false;
-                              }).toList();
-                            });
-                          },
-                        )
-                      : TextField(
-                          decoration: InputDecoration(
-                            hintText: hintText ?? "Search and $title",
-                            prefixIcon: const Icon(Icons.search),
-                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                          ),
-                          onChanged: (value) {
-                            setState(() {
-                              filteredItems = items.where((item) {
-                                if (item is Map<String, dynamic>) {
-                                  return item["name"].toLowerCase().contains(value.toLowerCase());
-                                } else if (item is String) {
-                                  return item.toLowerCase().contains(value.toLowerCase());
-                                }
-                                return false;
-                              }).toList();
-                            });
-                          },
+                  // Title
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: widget.modalTitleFontSize,
+                        fontWeight: widget.modalTitleFontWeight,
+                        color: widget.modalTitleColor,
+                      ),
+                    ),
+                  ),
+
+                  // Search box
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: (Platform.isIOS || Platform.isMacOS) && !kIsWeb
+                        ? CupertinoSearchTextField(
+                      placeholder: hintText ?? "Search and $title",
+                      onChanged: (value) {
+                        setState(() {
+                          filteredItems = items.where((item) {
+                            if (item is Map<String, dynamic>) {
+                              return item["name"].toLowerCase().contains(
+                                value.toLowerCase(),
+                              );
+                            } else if (item is String) {
+                              return item.toLowerCase().contains(
+                                value.toLowerCase(),
+                              );
+                            }
+                            return false;
+                          }).toList();
+                        });
+                      },
+                    )
+                        : TextField(
+                      decoration: InputDecoration(
+                        hintText: hintText ?? "Search and $title",
+                        prefixIcon: const Icon(Icons.search),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                ),
-                const SizedBox(height: 8),
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          filteredItems = items.where((item) {
+                            if (item is Map<String, dynamic>) {
+                              return item["name"].toLowerCase().contains(
+                                value.toLowerCase(),
+                              );
+                            } else if (item is String) {
+                              return item.toLowerCase().contains(
+                                value.toLowerCase(),
+                              );
+                            }
+                            return false;
+                          }).toList();
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 8),
 
-                // List of items
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: filteredItems.length,
-                    itemBuilder: (context, index) {
-                      final item = filteredItems[index];
-                      String displayText;
-                      String? emoji;
+                  // List of items
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: filteredItems.length,
+                      itemBuilder: (context, index) {
+                        final item = filteredItems[index];
+                        String displayText;
+                        String? emoji;
 
-                      if (item is Map<String, dynamic>) {
-                        displayText = item["name"];
-                        emoji = item["emoji"];
-                      } else {
-                        displayText = item.toString();
-                      }
+                        if (item is Map<String, dynamic>) {
+                          displayText = item["name"];
+                          emoji = item["emoji"];
+                        } else {
+                          displayText = item.toString();
+                        }
 
-                      final bool isSelected;
-                      if (item is Map<String, dynamic>) {
-                        isSelected =
-                            selectedCountry != null && selectedCountry!["name"] == displayText;
-                      } else {
-                        // For state or city items
-                        isSelected =
-                            (selectedState != null && selectedState == displayText) ||
-                            (selectedCity != null && selectedCity == displayText);
-                      }
+                        final bool isSelected;
+                        if (item is Map<String, dynamic>) {
+                          isSelected =
+                              selectedCountry != null &&
+                                  selectedCountry!["name"] == displayText;
+                        } else {
+                          // For state or city items
+                          isSelected =
+                              (selectedState != null &&
+                                  selectedState == displayText) ||
+                                  (selectedCity != null &&
+                                      selectedCity == displayText);
+                        }
 
-                      final row = Row(
-                        children: [
-                          if (emoji != null)
-                            Text(emoji, style: TextStyle(fontSize: widget.pickerItemFontSize)),
-                          if (emoji != null) const SizedBox(width: 10),
-                          Expanded(
-                            child: Text(
-                              displayText,
-                              style: TextStyle(
-                                fontSize: widget.pickerItemFontSize,
-                                fontWeight: widget.pickerItemFontWeight,
-                                color: isSelected
-                                    ? widget.selectedTextColor
-                                    : widget.pickerItemTextColor,
+                        final row = Row(
+                          children: [
+                            if (emoji != null)
+                              Text(
+                                emoji,
+                                style: TextStyle(
+                                  fontSize: widget.pickerItemFontSize,
+                                ),
+                              ),
+                            if (emoji != null) const SizedBox(width: 10),
+                            Expanded(
+                              child: Text(
+                                displayText,
+                                style: TextStyle(
+                                  fontSize: widget.pickerItemFontSize,
+                                  fontWeight: widget.pickerItemFontWeight,
+                                  color: isSelected
+                                      ? widget.selectedTextColor
+                                      : widget.pickerItemTextColor,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      );
+                          ],
+                        );
 
-                      return (Platform.isIOS || Platform.isMacOS) && !kIsWeb
-                          ? CupertinoButton(
-                              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-                              onPressed: () {
-                                onSelected(item);
-                                Navigator.pop(context);
-                              },
-                              child: row,
-                            )
-                          : ListTile(
-                              title: row,
-                              onTap: () {
-                                onSelected(item);
-                                Navigator.pop(context);
-                              },
-                            );
-                    },
+                        return (Platform.isIOS || Platform.isMacOS) &&
+                            !kIsWeb
+                            ? CupertinoButton(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 12,
+                            horizontal: 12,
+                          ),
+                          onPressed: () {
+                            onSelected(item);
+                            Navigator.pop(context);
+                          },
+                          child: row,
+                        )
+                            : ListTile(
+                          title: row,
+                          onTap: () {
+                            onSelected(item);
+                            Navigator.pop(context);
+                          },
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );
@@ -428,6 +482,7 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
                   selectedCity ?? '',
                 );
               },
+              hintText: widget.countryTextFieldHintText,
             );
           },
           child: _buildBox(
@@ -471,10 +526,14 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
                     selectedCity ?? '',
                   );
                 },
+                hintText: widget.stateTextFieldHintText,
               );
             }
           },
-          child: _buildBox(selectedState ?? widget.stateHintText, widget.verticalPadding),
+          child: _buildBox(
+            selectedState ?? widget.stateHintText,
+            widget.verticalPadding,
+          ),
         ),
         const SizedBox(height: 20),
 
@@ -492,7 +551,9 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
           onTap: () {
             if (selectedCountry != null && selectedState != null) {
               final states = selectedCountry!["states"] as List<dynamic>;
-              final stateObj = states.firstWhere((s) => s["name"] == selectedState);
+              final stateObj = states.firstWhere(
+                    (s) => s["name"] == selectedState,
+              );
 
               final cities = (stateObj["cities"] as List<dynamic>)
                   .map((c) => c["name"] as String)
@@ -500,7 +561,7 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
 
               showPicker<String>(
                 context: context,
-                title: "Select City",
+                title: widget.cityHintText,
                 items: cities,
                 onSelected: (value) {
                   setState(() {
@@ -514,10 +575,14 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
                     selectedCity ?? '',
                   );
                 },
+                hintText: widget.cityTextFieldHintText,
               );
             }
           },
-          child: _buildBox(selectedCity ?? widget.cityHintText, widget.verticalPadding),
+          child: _buildBox(
+            selectedCity ?? widget.cityHintText,
+            widget.verticalPadding,
+          ),
         ),
       ],
     );
@@ -530,7 +595,10 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
       margin: const EdgeInsets.only(top: 6),
       decoration: BoxDecoration(
         color: widget.fillColor,
-        border: Border.all(color: widget.borderColor, width: widget.borderWidth),
+        border: Border.all(
+          color: widget.borderColor,
+          width: widget.borderWidth,
+        ),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -538,7 +606,8 @@ class _CountryStateCitySelectorState extends State<CountryStateCitySelector> {
         children: [
           Row(
             children: [
-              if (emoji != null) Text(emoji, style: const TextStyle(fontSize: 22)),
+              if (emoji != null)
+                Text(emoji, style: const TextStyle(fontSize: 22)),
               if (emoji != null) const SizedBox(width: 8),
               Text(
                 text,

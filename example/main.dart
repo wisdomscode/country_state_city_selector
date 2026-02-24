@@ -63,6 +63,9 @@ class _HomePageState extends State<HomePage> {
               initialCountry: 'Nigeria',
               initialState: 'Anambra',
               initialCity: 'Ihiala',
+              countryTextFieldHintText: "Search For Country",
+              stateTextFieldHintText: "Search For State",
+              cityTextFieldHintText: "Search For City",
               onSelectionChanged: (String country, String state, String city) {
                 setState(() {
                   _country = country;
@@ -90,6 +93,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-// 
